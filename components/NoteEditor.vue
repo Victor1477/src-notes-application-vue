@@ -35,7 +35,8 @@ export default Vue.extend({
       try {
         this.currentNote.name = this.formatName(this.currentNote.name);
       } catch (e) {}
-      this.$axios.$post("/notes", this.currentNote).then((response) => {
+      const token = this.$store.getters.token;
+      this.$axios.$post("/notes", this.currentNote, { headers: { Authorization: token } }).then((response) => {
         this.currentNote = response;
         this.$axios.$get("/notes").then((response: Note[]) => {
           this.$store.dispatch("loadNotes", response);
@@ -43,7 +44,8 @@ export default Vue.extend({
       });
     },
     onDelete() {
-      this.$axios.$delete("/notes/" + this.currentNote.id).then(() => {
+      const token = this.$store.getters.token;
+      this.$axios.$delete("/notes/" + this.currentNote.id, { headers: { Authorization: token } }).then(() => {
         this.$axios.$get("/notes").then((response: Note[]) => {
           this.$store.dispatch("loadNotes", response);
         });

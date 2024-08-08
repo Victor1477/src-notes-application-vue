@@ -21,6 +21,11 @@ export default Vue.extend({
       showEditor: false,
     };
   },
+  mounted() {
+    if (!this.$store.getters.token) {
+      this.$router.push("/authentication");
+    }
+  },
   methods: {
     newNote() {
       this.showEditor = true;

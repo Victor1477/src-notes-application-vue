@@ -20,7 +20,8 @@ export default Vue.extend({
     };
   },
   mounted() {
-    this.$axios.$get("/notes").then((response: Note[]) => {
+    const token = this.$store.getters.token;
+    this.$axios.$get("/notes", { headers: { Authorization: token } }).then((response: Note[]) => {
       this.$store.dispatch("loadNotes", response);
     });
   },

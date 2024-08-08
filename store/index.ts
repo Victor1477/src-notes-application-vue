@@ -1,23 +1,23 @@
 export const state = () => ({
   notes: [],
-  currentNote: null,
+  auth: { token: null },
 });
 
 export const mutations = {
   setNotes: (state: any, payload: any) => (state.notes = payload),
-  setCurrentNote: (state: any, payload: any) => (state.currentNote = payload),
+  setToken: (state: any, payload: any) => (state.auth.token = payload),
 };
 
 export const actions = {
   loadNotes({ commit }: any, payload: any) {
     commit("setNotes", payload);
   },
-  setCurrentNote({ commit }: any, payload: any) {
-    commit("setCurrentNote", payload);
+  setToken({ commit }: any, payload: any) {
+    commit("setToken", payload);
   },
 };
 
 export const getters = {
   notes: (state: any) => state.notes,
-  currentNote: (state: any) => state.currentNote,
+  token: (state: any) => state.auth.token,
 };
