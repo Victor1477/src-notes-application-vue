@@ -21,7 +21,8 @@ export default Vue.extend({
   },
   mounted() {
     const token = this.$store.getters.token;
-    this.$axios.$get("/notes", { headers: { Authorization: token } }).then((response: Note[]) => {
+    const params = { headers: { Authorization: token } };
+    this.$axios.$get("/notes", params).then((response: Note[]) => {
       this.$store.dispatch("loadNotes", response);
     });
   },

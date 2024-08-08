@@ -36,17 +36,19 @@ export default Vue.extend({
         this.currentNote.name = this.formatName(this.currentNote.name);
       } catch (e) {}
       const token = this.$store.getters.token;
-      this.$axios.$post("/notes", this.currentNote, { headers: { Authorization: token } }).then((response) => {
+      const params = { headers: { Authorization: token } };
+      this.$axios.$post("/notes", this.currentNote, params).then((response) => {
         this.currentNote = response;
-        this.$axios.$get("/notes").then((response: Note[]) => {
+        this.$axios.$get("/notes", params).then((response: Note[]) => {
           this.$store.dispatch("loadNotes", response);
         });
       });
     },
     onDelete() {
       const token = this.$store.getters.token;
-      this.$axios.$delete("/notes/" + this.currentNote.id, { headers: { Authorization: token } }).then(() => {
-        this.$axios.$get("/notes").then((response: Note[]) => {
+      const params = { headers: { Authorization: token } };
+      this.$axios.$delete("/notes/" + this.currentNote.id, params).then(() => {
+        this.$axios.$get("/notes", params).then((response: Note[]) => {
           this.$store.dispatch("loadNotes", response);
         });
       });
