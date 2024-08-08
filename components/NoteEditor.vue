@@ -5,7 +5,7 @@
       <button class="red" @click="onDelete()">Delete</button>
       <button class="green" @click="onSave()">Save</button>
     </div>
-    <textarea name="notes" id="notes" v-model="currentNote.notes"></textarea>
+    <textarea name="notes" id="notes" v-model="currentNote.notes" spellcheck="false"></textarea>
   </main>
 </template>
 
