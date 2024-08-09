@@ -3,11 +3,17 @@
     <form @submit.prevent="onSubmit()">
       <div class="form-group">
         <label for="register-application-username">Username</label>
-        <input @change="onChange($event)" type="text" name="notes-application-username" v-model="form.username" />
+        <input
+          @change="onChange($event)"
+          type="text"
+          name="notes-application-username"
+          v-model="form.username"
+          autocomplete="off"
+        />
       </div>
       <div class="form-group">
         <label for="password">Password</label>
-        <input @change="onChange($event)" type="password" name="password" v-model="form.password" />
+        <input @change="onChange($event)" type="password" name="password" v-model="form.password" autocomplete="off" />
       </div>
       <button type="submit">
         <LoadingSpinner v-if="isLoading" size="1.5rem"></LoadingSpinner>
