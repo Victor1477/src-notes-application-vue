@@ -31,13 +31,13 @@ export default Vue.extend({
       this.showEditor = true;
       setTimeout(() => {
         this.currentNote = new Note();
-      }, 100);
+      }, 10);
     },
     onCurrentNote(note: Note) {
       this.showEditor = true;
       setTimeout(() => {
         this.currentNote = note;
-      }, 100);
+      }, 10);
     },
   },
 });
