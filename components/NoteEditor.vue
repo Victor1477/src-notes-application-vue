@@ -35,6 +35,7 @@ export default Vue.extend({
   },
   watch: {
     current(value: any) {
+      this.showConfirmDeletionPopup = false;
       this.currentNote = { ...value };
     },
   },
