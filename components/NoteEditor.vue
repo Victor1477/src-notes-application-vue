@@ -2,16 +2,23 @@
   <main>
     <input name="noteName" v-model="currentNote.name" placeholder="Name" />
     <div class="action-buttons">
-      <button class="red" @click="onDelete()">Delete</button>
+      <button class="red" @click="showConfirmDeletionPopup = true">Delete</button>
       <button class="green" @click="onSave()">Save</button>
     </div>
     <textarea name="notes" id="notes" v-model="currentNote.notes" spellcheck="false"></textarea>
+    <ConfirmDeletionPopup
+      v-if="showConfirmDeletionPopup"
+      @confirm="onDelete()"
+      @close="showConfirmDeletionPopup = false"
+      :notesName="current.name"
+    ></ConfirmDeletionPopup>
   </main>
 </template>
 
 <script lang="ts">
 import Vue from "vue";
 import Note from "~/utils/models/notes.model";
+import ConfirmDeletionPopup from "./ConfirmDeletionPopup.vue";
 
 export default Vue.extend({
   props: {
@@ -23,6 +30,7 @@ export default Vue.extend({
   data() {
     return {
       currentNote: new Note(),
+      showConfirmDeletionPopup: true,
     };
   },
   watch: {
@@ -47,11 +55,16 @@ export default Vue.extend({
     onDelete() {
       const token = this.$store.getters.token;
       const params = { headers: { Authorization: token } };
-      this.$axios.$delete("/notes/" + this.currentNote.id, params).then(() => {
-        this.$axios.$get("/notes", params).then((response: Note[]) => {
-          this.$store.dispatch("loadNotes", response);
+      this.$axios
+        .$delete("/notes/" + this.currentNote.id, params)
+        .then(() => {
+          this.$axios.$get("/notes", params).then((response: Note[]) => {
+            this.$store.dispatch("loadNotes", response);
+          });
+        })
+        .finally(() => {
+          this.showConfirmDeletionPopup = false;
         });
-      });
     },
     formatName(value: string): string {
       let temp = value.split("");
@@ -69,6 +82,7 @@ main {
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 3.5rem auto;
+  position: relative;
 
   @include scrollbar;
 

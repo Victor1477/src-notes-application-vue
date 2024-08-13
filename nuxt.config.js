@@ -21,7 +21,7 @@ export default {
   buildModules: ["@nuxt/typescript-build"],
   modules: ["@nuxtjs/axios"],
   axios: {
-    baseURL: "/",
+    baseURL: "http://localhost:4201",
   },
   build: {},
 };
