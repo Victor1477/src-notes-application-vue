@@ -22,9 +22,9 @@ export default Vue.extend({
     };
   },
   mounted() {
-    // if (!this.$store.getters.token) {
-    //   this.$router.push("/authentication");
-    // }
+    if (!this.$store.getters.token) {
+      this.$router.push("/authentication");
+    }
   },
   methods: {
     newNote() {
