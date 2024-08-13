@@ -2,7 +2,7 @@
   <div class="page-container">
     <Header @newNote="newNote()"></Header>
     <SidebarList @currentNote="onCurrentNote"></SidebarList>
-    <NoteEditor v-if="showEditor" :current="currentNote"></NoteEditor>
+    <NoteEditor v-if="showEditor" :current="currentNote" @close="showEditor = false"></NoteEditor>
     <h3 v-else>Please select a note to edit/visualize or click on 'New' to create a new one.</h3>
   </div>
 </template>

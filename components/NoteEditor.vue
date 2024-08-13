@@ -65,6 +65,7 @@ export default Vue.extend({
         })
         .finally(() => {
           this.showConfirmDeletionPopup = false;
+          this.$emit("close");
         });
     },
     formatName(value: string): string {
