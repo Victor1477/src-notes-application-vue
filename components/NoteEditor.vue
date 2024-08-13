@@ -1,6 +1,6 @@
 <template>
   <main>
-    <input name="noteName" v-model="currentNote.name" placeholder="Name" />
+    <input name="noteName" v-model="currentNote.name" placeholder="Name" autocomplete="off" />
     <div class="action-buttons">
       <button class="red" @click="showConfirmDeletionPopup = true">Delete</button>
       <button class="green" @click="onSave()">Save</button>
