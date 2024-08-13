@@ -10,7 +10,7 @@
       v-if="showConfirmDeletionPopup"
       @confirm="onDelete()"
       @close="showConfirmDeletionPopup = false"
-      :notesName="current.name"
+      :notesName="currentNote.name"
     ></ConfirmDeletionPopup>
   </main>
 </template>
