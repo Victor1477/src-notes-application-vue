@@ -30,7 +30,7 @@ export default Vue.extend({
   data() {
     return {
       currentNote: new Note(),
-      showConfirmDeletionPopup: true,
+      showConfirmDeletionPopup: false,
     };
   },
   watch: {
