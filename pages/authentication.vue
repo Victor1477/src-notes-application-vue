@@ -25,6 +25,7 @@
 
 <script lang="ts">
 import Vue from "vue";
+import Popup from "~/utils/service/popup.service";
 
 export default Vue.extend({
   data() {
@@ -47,7 +48,9 @@ export default Vue.extend({
             this.$router.push("/");
           }
         })
-        .catch(() => {})
+        .catch(() => {
+          new Popup("Authentication Failed", true);
+        })
         .finally(() => {
           this.isLoading = false;
         });

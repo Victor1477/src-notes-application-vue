@@ -19,6 +19,7 @@
 import Vue from "vue";
 import Note from "~/utils/models/notes.model";
 import ConfirmDeletionPopup from "./ConfirmDeletionPopup.vue";
+import Popup from "~/utils/service/popup.service";
 
 export default Vue.extend({
   props: {
@@ -46,12 +47,18 @@ export default Vue.extend({
       } catch (e) {}
       const token = this.$store.getters.token;
       const params = { headers: { Authorization: token } };
-      this.$axios.$post("/notes", this.currentNote, params).then((response) => {
-        this.currentNote = response;
-        this.$axios.$get("/notes", params).then((response: Note[]) => {
-          this.$store.dispatch("loadNotes", response);
+      this.$axios
+        .$post("/notes", this.currentNote, params)
+        .then((response) => {
+          this.currentNote = response;
+          this.$axios.$get("/notes", params).then((response: Note[]) => {
+            this.$store.dispatch("loadNotes", response);
+          });
+          new Popup("Saved");
+        })
+        .catch(() => {
+          new Popup("Failed on Save", true);
         });
-      });
     },
     onDelete() {
       const token = this.$store.getters.token;
@@ -61,7 +68,11 @@ export default Vue.extend({
         .then(() => {
           this.$axios.$get("/notes", params).then((response: Note[]) => {
             this.$store.dispatch("loadNotes", response);
+            new Popup("Deleted");
           });
+        })
+        .catch(() => {
+          new Popup("Failed on Delete", true);
         })
         .finally(() => {
           this.showConfirmDeletionPopup = false;
