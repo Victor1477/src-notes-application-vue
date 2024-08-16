@@ -85,6 +85,7 @@ main {
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 3.5rem auto;
   position: relative;
+  background-color: rgb(40, 40, 40);
 
   @include scrollbar;
 
@@ -97,7 +98,12 @@ main {
     border-radius: 1rem;
     text-align: center;
     font-size: 1rem;
-    padding: 0.3rem;
+    padding: 0.4rem;
+    background-color: rgb(150, 150, 150);
+
+    &::placeholder {
+      color: black;
+    }
   }
 
   .action-buttons {
@@ -138,11 +144,14 @@ main {
 
   textarea {
     border: 1px solid black;
+    color: rgb(220, 220, 220);
+    letter-spacing: 0.5px;
     outline: none;
     padding: 0.5rem;
     font-size: 1rem;
     resize: none;
     grid-column: span 2;
+    background-color: rgb(50, 50, 50);
   }
 }
 </style>

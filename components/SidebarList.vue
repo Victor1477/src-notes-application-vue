@@ -52,24 +52,24 @@ export default Vue.extend({
 
 aside {
   text-align: center;
-  background-color: rgb(150, 150, 150);
+  background-color: rgb(40, 40, 40);
+  border-right: 1px solid black;
 
   @include scrollbar;
 
   input {
-    background-color: rgb(130, 130, 130);
-    color: white;
+    background-color: rgb(120, 120, 120);
     outline: none;
     border: none;
     margin: 1rem;
     font-size: 1.1rem;
-    padding: 0.2rem;
+    padding: 0.3rem;
     min-width: 70%;
     border-radius: 1rem;
     text-align: center;
 
     &::placeholder {
-      color: rgb(230, 230, 230);
+      color: black;
     }
   }
 
@@ -82,14 +82,15 @@ aside {
       padding: 1rem;
       width: 100%;
       text-align: center;
-      background-color: rgb(130, 130, 130);
+      color: white;
+      background-color: rgb(60, 60, 60);
       margin-bottom: 0.3rem;
       font-size: 1rem;
       cursor: pointer;
       transition: all 100ms linear;
 
       &:hover {
-        background-color: rgb(140, 140, 140);
+        background-color: rgb(120, 120, 120);
         font-size: 1.1rem;
         font-weight: bold;
       }

@@ -49,7 +49,7 @@ export default Vue.extend({
     position: relative;
     width: 24rem;
     height: 12rem;
-    background: white;
+    background: rgb(220, 220, 220);
     border-radius: 1rem;
 
     h3 {
