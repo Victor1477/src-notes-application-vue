@@ -149,6 +149,7 @@ main {
     outline: none;
     padding: 0.5rem;
     font-size: 1rem;
+    line-height: 1.4rem;
     resize: none;
     grid-column: span 2;
     background-color: rgb(50, 50, 50);
