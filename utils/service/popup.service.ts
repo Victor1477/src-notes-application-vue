@@ -13,6 +13,7 @@ export default class Popup {
         width: 20%;
         max-width: 20%;
         left: 40%;
+        z-index: 300;
       "
     >
       message

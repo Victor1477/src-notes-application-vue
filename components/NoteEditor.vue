@@ -166,4 +166,24 @@ main {
     background-color: rgb(50, 50, 50);
   }
 }
+
+@media (max-width: 60rem) {
+  main {
+    grid-template-columns: 100%;
+    grid-template-rows: 3.5rem 3.5rem auto;
+  }
+
+  .action-buttons {
+    grid-row: 1 / 2;
+  }
+
+  input {
+    grid-row: 2 / 3;
+    justify-self: center !important;
+  }
+
+  textarea {
+    grid-row: 3 / 4;
+  }
+}
 </style>
