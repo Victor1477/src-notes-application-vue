@@ -1,6 +1,6 @@
 <template>
   <header>
-    <div class="mobile-nav">
+    <div class="mobile-nav" @click="$emit('toggleMobileNav')">
       <div class="mobile-nav__bar"></div>
       <div class="mobile-nav__bar"></div>
       <div class="mobile-nav__bar"></div>
