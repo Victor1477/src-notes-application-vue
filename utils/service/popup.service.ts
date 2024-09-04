@@ -10,9 +10,9 @@ export default class Popup {
         font-size: 1.2rem;
         margin: auto;
         top: 1.5rem;
-        width: 20%;
-        max-width: 20%;
-        left: 40%;
+        min-width: 40%;
+        max-width: 40%;
+        left: 30%;
         z-index: 300;
       "
     >
