@@ -1,5 +1,10 @@
 <template>
   <header>
+    <div class="mobile-nav">
+      <div class="mobile-nav__bar"></div>
+      <div class="mobile-nav__bar"></div>
+      <div class="mobile-nav__bar"></div>
+    </div>
     <nav><button @click="$emit('newNote')">New</button></nav>
   </header>
 </template>
@@ -34,6 +39,28 @@ header {
 
     &:hover {
       background-color: rgb(90, 90, 90);
+    }
+  }
+
+  .mobile-nav {
+    display: none;
+    flex-direction: column;
+    gap: 0.5rem;
+    width: 3rem;
+    &__bar {
+      background-color: white;
+      border: none;
+      border-radius: 3px;
+      width: 100%;
+      height: 0.5rem;
+    }
+  }
+
+  @media (max-width: 60rem) {
+    justify-content: space-between;
+
+    .mobile-nav {
+      display: flex;
     }
   }
 }

@@ -1,7 +1,7 @@
 <template>
   <div class="page-container">
     <Header @newNote="newNote()"></Header>
-    <SidebarList @currentNote="onCurrentNote"></SidebarList>
+    <SidebarList id="sidebar" @currentNote="onCurrentNote"></SidebarList>
     <NoteEditor v-if="showEditor" :current="currentNote" @close="showEditor = false"></NoteEditor>
     <h3 v-else>Please select a note to edit/visualize or click on 'New' to create a new one.</h3>
   </div>
@@ -23,7 +23,7 @@ export default Vue.extend({
   },
   mounted() {
     if (!this.$store.getters.token) {
-      this.$router.push("/authentication");
+      this.$router.push("/");
     }
   },
   methods: {
@@ -55,5 +55,18 @@ h3 {
   height: 100vh;
   grid-template-columns: 1fr 3fr;
   grid-template-rows: 3.5rem auto;
+}
+
+@media (max-width: 60rem) {
+  .page-container {
+    display: grid;
+    height: 100vh;
+    grid-template-columns: 100%;
+    grid-template-rows: 3.5rem auto;
+  }
+
+  #sidebar {
+    display: none;
+  }
 }
 </style>
