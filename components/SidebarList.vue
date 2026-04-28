@@ -52,47 +52,75 @@ export default Vue.extend({
 
 aside {
   text-align: center;
-  background-color: rgb(40, 40, 40);
-  border-right: 1px solid black;
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-right: 1px solid rgba(255, 255, 255, 0.1);
+  position: relative;
+  z-index: 1;
 
   @include scrollbar;
 
   input {
-    background-color: rgb(120, 120, 120);
-    outline: none;
-    border: none;
-    margin: 1rem;
-    font-size: 1.1rem;
-    padding: 0.3rem;
-    min-width: 70%;
-    border-radius: 1rem;
+    @include input-modern;
+    margin: 1.5rem 1rem;
+    font-size: 1rem;
+    padding: 0.75rem 1rem;
+    min-width: calc(100% - 2rem);
+    border-radius: var(--border-radius-lg);
     text-align: center;
-
-    &::placeholder {
-      color: black;
-    }
+    font-weight: 500;
+    letter-spacing: 0.3px;
   }
 
   ul {
     list-style: none;
     overflow-y: scroll;
     max-height: 75vh;
+    padding: 0 0.75rem 0.75rem;
 
     li {
-      padding: 1rem;
+      padding: 1.2rem 1rem;
       width: 100%;
-      text-align: center;
-      color: white;
-      background-color: rgb(60, 60, 60);
-      margin-bottom: 0.3rem;
-      font-size: 1rem;
+      text-align: left;
+      color: var(--text-primary);
+      background: rgba(255, 255, 255, 0.05);
+      margin-bottom: 0.75rem;
+      font-size: 0.95rem;
+      font-weight: 500;
       cursor: pointer;
-      transition: all 100ms linear;
+      border-radius: var(--border-radius-md);
+      transition: all var(--transition-normal);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      position: relative;
+      overflow: hidden;
+      letter-spacing: 0.3px;
+
+      &::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 0;
+        height: 100%;
+        width: 3px;
+        background: linear-gradient(180deg, var(--accent-purple), var(--accent-pink));
+        transform: scaleY(0);
+        transition: transform var(--transition-normal);
+      }
 
       &:hover {
-        background-color: rgb(120, 120, 120);
-        font-size: 1.1rem;
-        font-weight: bold;
+        background: rgba(255, 255, 255, 0.1);
+        transform: translateX(5px);
+        border-color: rgba(255, 255, 255, 0.15);
+        box-shadow: var(--shadow-md);
+
+        &::before {
+          transform: scaleY(1);
+        }
+      }
+
+      &:active {
+        transform: translateX(3px);
       }
     }
   }

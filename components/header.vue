@@ -20,39 +20,82 @@ header {
   justify-content: end;
   align-items: center;
   grid-column: span 2;
-  background-color: rgb(30, 30, 30);
-  padding: 0 1rem;
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 0 1.5rem;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+  position: relative;
+  z-index: 10;
 
   button {
-    padding: 0.5rem 3rem;
-    background-color: rgb(70, 70, 70);
+    padding: 0.7rem 2.5rem;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     border: none;
-    border-bottom: 2px solid white;
     color: white;
-    border-radius: 0.2rem;
-    font-size: 1.1rem;
-    transition: all 50ms linear;
+    border-radius: var(--border-radius-md);
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    transition: all var(--transition-normal);
+    box-shadow: var(--shadow-sm);
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
 
-    &:active {
-      font-size: 1rem;
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.2), transparent);
+      opacity: 0;
+      transition: opacity var(--transition-fast);
+    }
+
+    &:hover::before {
+      opacity: 1;
     }
 
     &:hover {
-      background-color: rgb(90, 90, 90);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+    }
+
+    &:active {
+      transform: translateY(0);
+      box-shadow: var(--shadow-sm);
     }
   }
 
   .mobile-nav {
     display: none;
     flex-direction: column;
-    gap: 0.5rem;
-    width: 3rem;
+    gap: 0.4rem;
+    width: 2rem;
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: var(--border-radius-sm);
+    transition: all var(--transition-normal);
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.1);
+    }
+    
     &__bar {
-      background-color: white;
+      background: linear-gradient(90deg, var(--accent-purple), var(--accent-pink));
       border: none;
       border-radius: 3px;
       width: 100%;
-      height: 0.5rem;
+      height: 0.3rem;
+      transition: all var(--transition-normal);
+    }
+
+    &:hover &__bar {
+      background: linear-gradient(90deg, var(--accent-blue), var(--accent-green));
     }
   }
 
