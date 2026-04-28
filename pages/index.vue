@@ -52,8 +52,25 @@ export default Vue.extend({
 <style lang="scss" scoped>
 h3 {
   text-align: center;
-  margin-top: 25%;
-  font-size: 1.35rem;
+  margin-top: 20%;
+  font-size: 1.5rem;
+  color: var(--text-secondary);
+  font-weight: 400;
+  letter-spacing: 0.3px;
+  line-height: 2rem;
+  padding: 0 2rem;
+  animation: fadeIn 0.6s ease-out;
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
 }
 
 .page-container {
@@ -61,6 +78,8 @@ h3 {
   height: 100vh;
   grid-template-columns: 1fr 3fr;
   grid-template-rows: 3.5rem auto;
+  position: relative;
+  z-index: 1;
 }
 
 .sidebar-mobile-container {
@@ -69,7 +88,10 @@ h3 {
   z-index: 100;
   height: 100%;
   width: 100%;
-  background-color: rgba(0, 0, 0, 0.75);
+  background-color: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  animation: fadeIn 0.3s ease-out;
 }
 
 #sidebar-mobile {
@@ -78,6 +100,16 @@ h3 {
   top: 3.5rem;
   width: 70%;
   height: 100%;
+  animation: slideInLeft 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+  @keyframes slideInLeft {
+    from {
+      transform: translateX(-100%);
+    }
+    to {
+      transform: translateX(0);
+    }
+  }
 }
 
 @media (max-width: 60rem) {

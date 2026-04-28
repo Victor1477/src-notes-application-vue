@@ -4,12 +4,91 @@
   }
 
   ::-webkit-scrollbar-thumb {
-    background-color: black;
+    background: linear-gradient(180deg, var(--accent-purple), var(--accent-pink));
     border-radius: 1rem;
+    transition: all var(--transition-normal);
+    
+    &:hover {
+      background: linear-gradient(180deg, var(--accent-blue), var(--accent-green));
+    }
   }
 
   ::-webkit-scrollbar-track {
-    background-color: rgb(120, 120, 120);
+    background-color: rgba(255, 255, 255, 0.05);
     border-radius: 1rem;
+  }
+}
+
+@mixin glassmorphism {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+@mixin card-hover {
+  transition: all var(--transition-normal);
+  
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+  }
+  
+  &:active {
+    transform: translateY(0);
+  }
+}
+
+@mixin button-gradient($gradient) {
+  background: $gradient;
+  border: none;
+  color: var(--text-primary);
+  font-weight: 600;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: all var(--transition-normal);
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.2), transparent);
+    opacity: 0;
+    transition: opacity var(--transition-fast);
+  }
+  
+  &:hover::before {
+    opacity: 1;
+  }
+  
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+  }
+  
+  &:active {
+    transform: translateY(0);
+  }
+}
+
+@mixin input-modern {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: var(--text-primary);
+  outline: none;
+  transition: all var(--transition-normal);
+  
+  &:focus {
+    background: rgba(255, 255, 255, 0.12);
+    border-color: var(--accent-purple);
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+  }
+  
+  &::placeholder {
+    color: var(--text-muted);
   }
 }

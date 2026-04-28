@@ -94,92 +94,125 @@ export default Vue.extend({
 main {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-template-rows: 3.5rem auto;
+  grid-template-rows: 4rem auto;
   position: relative;
-  background-color: rgb(40, 40, 40);
+  background: rgba(255, 255, 255, 0.02);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  z-index: 1;
 
   @include scrollbar;
 
   input {
-    outline: none;
-    border: none;
+    @include input-modern;
     width: 75%;
     justify-self: end;
     align-self: center;
-    border-radius: 1rem;
+    border-radius: var(--border-radius-lg);
     text-align: center;
-    font-size: 1rem;
-    padding: 0.4rem;
-    background-color: rgb(150, 150, 150);
-
-    &::placeholder {
-      color: black;
-    }
+    font-size: 1.05rem;
+    padding: 0.75rem 1.25rem;
+    font-weight: 500;
+    letter-spacing: 0.3px;
+    margin-right: 1rem;
   }
 
   .action-buttons {
-    justify-self: end;
+    justify-self: start;
     align-self: center;
-    margin-right: 1rem;
+    margin-left: 1.5rem;
+    display: flex;
+    gap: 0.75rem;
 
     button {
-      padding: 0.5rem 3rem;
+      padding: 0.75rem 2rem;
       border: none;
-      border-bottom: 2px solid black;
       color: white;
-      border-radius: 0.2rem;
-      font-size: 1.1rem;
-      transition: all 50ms linear;
+      border-radius: var(--border-radius-md);
+      font-size: 0.95rem;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      transition: all var(--transition-normal);
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+
+      &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(135deg, rgba(255, 255, 255, 0.2), transparent);
+        opacity: 0;
+        transition: opacity var(--transition-fast);
+      }
+
+      &:hover::before {
+        opacity: 1;
+      }
+
+      &:hover {
+        transform: translateY(-2px);
+        box-shadow: var(--shadow-md);
+      }
 
       &:active {
-        font-size: 1rem;
+        transform: translateY(0);
+        box-shadow: var(--shadow-sm);
       }
 
       &.red {
-        background-color: rgb(200, 50, 50);
-
-        &:hover {
-          background-color: rgb(230, 50, 50);
-        }
+        background: linear-gradient(135deg, #fa709a 0%, #ff6b6b 100%);
       }
 
       &.green {
-        background-color: rgb(50, 200, 50);
-
-        &:hover {
-          background-color: rgb(50, 230, 50);
-        }
+        background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
       }
     }
   }
 
   textarea {
-    border: 1px solid black;
-    color: rgb(220, 220, 220);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: var(--text-primary);
     letter-spacing: 0.5px;
     outline: none;
-    padding: 0.5rem;
+    padding: 1.5rem;
     font-size: 1rem;
-    line-height: 1.4rem;
+    line-height: 1.6rem;
     resize: none;
     grid-column: span 2;
-    background-color: rgb(50, 50, 50);
+    background: rgba(255, 255, 255, 0.03);
+    transition: all var(--transition-normal);
+    border-radius: var(--border-radius-md);
+    margin: 0 1rem 1rem;
+
+    &:focus {
+      background: rgba(255, 255, 255, 0.05);
+      border-color: var(--accent-purple);
+      box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+    }
   }
 }
 
 @media (max-width: 60rem) {
   main {
     grid-template-columns: 100%;
-    grid-template-rows: 3.5rem 3.5rem auto;
+    grid-template-rows: 4rem 4rem auto;
   }
 
   .action-buttons {
     grid-row: 1 / 2;
+    justify-self: center !important;
+    margin-left: 0 !important;
   }
 
   input {
     grid-row: 2 / 3;
     justify-self: center !important;
+    margin-right: 0 !important;
   }
 
   textarea {
