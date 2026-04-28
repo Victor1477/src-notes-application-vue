@@ -153,6 +153,15 @@ export default Vue.extend({
         padding: 1rem;
         color: var(--text-primary);
         transition: all var(--transition-normal);
+
+        // Remove autofill background color
+        &:-webkit-autofill,
+        &:-webkit-autofill:hover,
+        &:-webkit-autofill:focus,
+        &:-webkit-autofill:active {
+          -webkit-text-fill-color: var(--text-primary) !important;
+          transition: background-color 5000s ease-in-out 0s;
+        }
       }
 
       &.active {
